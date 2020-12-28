@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 @import "~bootstrap/scss/bootstrap";
 @import "./tables";
+@import "./updateForm";
 @import "./footer";
 @import "./login";
 @import "./menu";
@@ -10,6 +11,7 @@
 }
 
 body {
+  min-height: 100vh;
   font-family: "Nunito", sans-serif;
   background-color: $gray;
 }
