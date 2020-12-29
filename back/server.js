@@ -1,12 +1,16 @@
 const express = require("express");
-const app = express();
 const volleyball = require("volleyball")
-const bodyParser = require("body-parser")
+const bp = require('body-parser')
 const db = require("./db");
 const routes = require("./routes");
+const app = express();
+
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
 
 // Routes
 app.use("/api", routes)
+
 
 //Server & data base setting
 db.sync({ force: false })
