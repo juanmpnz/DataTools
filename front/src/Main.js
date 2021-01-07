@@ -8,6 +8,7 @@ import Footer from "./components/Footer"
 import Login from "./components/Login"
 import DataTables from "./containers/DataTables"
 import UpdateContainer from "./containers/UpdateContainer"
+import NotFound from "./utils/404";
 
 function Main({ location }) {
 const path = location.pathname;
@@ -20,6 +21,7 @@ const path = location.pathname;
         <Route exact path="/" component={DataTables}></Route>
         <Route path="/login" component={Login}></Route> 
         <Route path="/update/:id" component={UpdateContainer}></Route>
+        <Route path="/*" component={NotFound} />
         </Switch>
         </div>  
         {path === "/login" ? null : <> <Footer/> </> }     

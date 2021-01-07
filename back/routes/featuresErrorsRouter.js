@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    getTrabajos,
-    
-} = require('./controllers/trabajoController') 
+    getAll,
+ 
 
-router.get("/",getTrabajos);
+} = require('./controllers/featuresErrorsController') 
+
+router.get("/",getAll);
 
 
 

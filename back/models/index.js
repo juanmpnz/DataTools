@@ -1,12 +1,12 @@
 const db = require("../db");
-const Clientes = require("../models/Clientes");
-const Trabajos = require("../models/Trabajos")
+const FeatureErrors = require("./FeatureErrors");
+const Tools = require("./Tools")
 
-Trabajos.belongsTo(Clientes)
-Clientes.hasMany(Trabajos)
+Tools.belongsTo(FeatureErrors)
+FeatureErrors.hasMany(Tools)
 
 module.exports={
     db,
-    Clientes,
-    Trabajos,
+    FeatureErrors,
+    Tools,
 }

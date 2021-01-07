@@ -1,38 +1,37 @@
 const S = require("sequelize");
 const db = require("../db");
 
-class Clientes extends S.Model {}
-Clientes.init(
+class FeaturesErrors extends S.Model {}
+FeaturesErrors.init(
   {
-    name: {
-      type: S.TEXT,
-      allowNull: false,
-    },
-    lastname: {
-      type: S.TEXT,
-      allowNull: false,
-      defaultValue: null ,
-    },
-    email: {
+    tool: {
       type: S.STRING,
-      allowNull: true,
-      isEmail: true,
+      allowNull: false,
+    },
+    type: {
+      type: S.STRING,
+      allowNull: false,
       defaultValue: null ,
     },
-    whatsapp: {
+    img: {
+      type: S.STRING,
+      allowNull: true,  
+      defaultValue: null ,
+    },
+    description: {
       type: S.STRING,
       allowNull: true,
       defaultValue: null ,
    
     },
-    adress: {
-        type: S.STRING,
+    votes: {
+        type: S.NUMBER,
         allowNull: true,
-        defaultValue: null ,
+        defaultValue: 0 ,
       },
  
   },
-  { sequelize: db, modelName: "clientes" }
+  { sequelize: db, modelName: "FeaturesErrors" }
 );
 
-module.exports = Clientes;
+module.exports = FeaturesErrors;

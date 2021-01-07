@@ -40,8 +40,12 @@ function AddClient({ handleChange, onSubmit }) {
                     <InputGroup.Prepend>
                       <InputGroup.Text>Nombre y apellido</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl onChange={handleChange} name="name" />
-                    <FormControl onChange={handleChange} name="lastName" />
+                    <FormControl onChange={handleChange} name="name" required />
+                    <FormControl
+                      onChange={handleChange}
+                      name="lastName"
+                      required
+                    />
                   </InputGroup>
                   <Button onClick={onSubmit} variant="primary" size="sm" block>
                     <Plus size={25} />
