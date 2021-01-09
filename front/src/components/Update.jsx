@@ -1,53 +1,44 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
-import AcordionContainer from "../containers/AcordionContainer";
 
-function Update() {
+function Update({ handleChange, currentOrder, tools }) {
+  console.log(tools);
   return (
     <div className="update-form">
       <Form>
         <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Ubicación del trabajo</Form.Label>
-          <Form.Control type="email" placeholder="Ej. C:\trabajos\cliente" />
+          <Form.Label>Herramienta</Form.Label>
+          <Form.Group controlId="exampleForm.SelectCustom">
+            <Form.Control
+              onChange={handleChange}
+              name="tool"
+              as="select"
+              custom
+            >
+              {tools.map((e) => (
+                <option key={e.id}>{e.toolName}</option>
+              ))}
+            </Form.Control>
+          </Form.Group>
         </Form.Group>
         <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Trabajo</Form.Label>
+          <Form.Label>Descripcion</Form.Label>
           <div className="text-subm">
-            <Form.Control as="textarea" rows={3} />
-            <Button variant="outline-dark">AGREGAR TRABAJO</Button>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              onChange={handleChange}
+              name="description"
+            />
+            {/*<Button variant="outline-dark">AGREGAR TRABAJO</Button> */}
           </div>
         </Form.Group>
       </Form>
-      <AcordionContainer />
-      <Form>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Nombre</Form.Label>
-          <Form.Control type="text" placeholder="name@example.com" />
-        </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Apellido</Form.Label>
-          <Form.Control type="text" placeholder="name@example.com" />
-        </Form.Group>
-
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Dirección</Form.Label>
-          <Form.Control type="email" placeholder="name@example.com" />
-        </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Whatsapp</Form.Label>
-          <Form.Control type="email" placeholder="name@example.com" />
-        </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="name@example.com" />
-        </Form.Group>
-
-        <div className="btn-subm">
-          <Button className="btn-subm" variant="dark">
-            AGREGAR CLIENTE
-          </Button>
-        </div>
-      </Form>
+      <div className="btn-subm">
+        <Button className="btn-subm" variant="dark">
+          AGREGAR
+        </Button>
+      </div>
     </div>
   );
 }

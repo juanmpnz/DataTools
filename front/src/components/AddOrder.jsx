@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, InputGroup, FormControl, Modal } from "react-bootstrap";
+import { Button, InputGroup, FormControl, Modal, Form } from "react-bootstrap";
 import { Plus } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
 
-function AddClient({ handleChange, onSubmit }) {
+function AddClient({ handleChange, onSubmit, currentOrder }) {
   const [lgShow, setLgShow] = useState(false);
   const location = useLocation();
   const route = location.pathname;
@@ -11,7 +11,7 @@ function AddClient({ handleChange, onSubmit }) {
   return (
     <>
       <div>
-        {route != "/update/:id" ? (
+        {route != "/update" ? (
           <div>
             <Button
               variant="primary"
@@ -20,7 +20,7 @@ function AddClient({ handleChange, onSubmit }) {
               onClick={() => setLgShow(true)}
             >
               <Plus size={25} />
-              AGREGA UN CLIENTE
+              AGREGA UN PEDIDO
             </Button>
             <form onSubmit={() => setLgShow(false)}>
               <Modal
@@ -31,22 +31,23 @@ function AddClient({ handleChange, onSubmit }) {
               >
                 <Modal.Header closeButton>
                   <Modal.Title id="example-modal-sizes-title-lg">
-                    Agrega un cliente
+                    Selecciona el tipo de pedido
                   </Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text>Nombre y apellido</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl onChange={handleChange} name="name" required />
-                    <FormControl
+                  <Form.Group controlId="exampleForm.SelectCustom">
+                    <Form.Control
                       onChange={handleChange}
-                      name="lastName"
-                      required
-                    />
-                  </InputGroup>
+                      name="type"
+                      as="select"
+                      custom
+                    >
+                      <option>Seleccionar</option>
+                      <option>FEATURE</option>
+                      <option>ERROR</option>
+                    </Form.Control>
+                  </Form.Group>
                   <Button onClick={onSubmit} variant="primary" size="sm" block>
                     <Plus size={25} />
                     AGREGAR
@@ -56,7 +57,7 @@ function AddClient({ handleChange, onSubmit }) {
             </form>
           </div>
         ) : (
-          <div className="name-ficha">NOMBRE DEL CLIENTE</div>
+          <div className="name-ficha">{currentOrder.type}</div>
         )}
       </div>
     </>

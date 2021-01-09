@@ -1,34 +1,42 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import AddClient from "../components/AddClient";
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder } from "../redux/action-creators/orders";
+import AddOrder from "../components/AddOrder";
 
 function AddContainer() {
+  const dispatch = useDispatch();
   const history = useHistory();
+  const currentOrder = useSelector((state) => state.orders);
+  console.log(currentOrder);
   const [validated, setValidated] = useState(false);
-  const [cliente, setCliente] = useState({
-    email: "",
-    name: "",
-    lastname: "",
-    adress: "",
-    whatsapp: "",
+  const [errors, setErrors] = useState({
+    name: "Debes seleccionar un pedido",
+  });
+  const [order, setOrder] = useState({
+    type: "",
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("entro");
-    /* setCliente(cliente); */
-    history.push("/update/:id");
+    dispatch(addOrder(order)).then((ord) => {
+      if (ord === "err") console.log("Error");
+      else history.push(`/update`);
+    });
   };
+
   const handleChange = (e) => {
     e.preventDefault();
-    console.log(e.target.name);
-    console.log(e.target.value);
+    const { value } = e.target;
+    setOrder({ ...order, [e.target.name]: value });
   };
+
   return (
-    <AddClient
+    <AddOrder
       handleChange={handleChange}
       onSubmit={onSubmit}
       validated={validated}
+      currentOrder={currentOrder}
     />
   );
 }

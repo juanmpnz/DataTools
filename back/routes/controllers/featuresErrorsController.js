@@ -1,7 +1,5 @@
 const {
   FeatureErrors,
-    Trabajos,
-
   } = require("../../models");
 
   const getAll = (req,res,next)=>{
@@ -10,10 +8,16 @@ const {
   .catch(next)
   }
 
-
+  const addOrder = (req,res,next)=>{
+    const {tool,type,img,description} = req.body
+    FeatureErrors.create({tool,type,img,description})
+    .then((order)=> res.send(order))
+    .catch((e)=>e)
+  }
   
 
 module.exports = {
   getAll,
+  addOrder,
 
 };

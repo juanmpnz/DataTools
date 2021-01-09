@@ -1,7 +1,6 @@
 import { Button, InputGroup, FormControl } from "react-bootstrap";
 import { Person, Key } from "react-bootstrap-icons";
-
-function Login({ handleChange, handleSubmit, currentUser, register }) {
+function Register({ handleChange, handleSubmit, user }) {
   return (
     <div className="container-fluid login">
       <div className="form">
@@ -24,13 +23,39 @@ function Login({ handleChange, handleSubmit, currentUser, register }) {
               </InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
-              required
-              name="email"
+              placeholder="Nombre"
+              aria-label="Nombre"
+              aria-describedby="basic-addon1"
+              name="name"
+              onChange={handleChange}
+            />
+          </InputGroup>
+          <InputGroup className="mb-3 input-login">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">
+                <Person />
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
+              placeholder="Apellido"
+              aria-label="Apellido"
+              aria-describedby="basic-addon1"
+              name="lastname"
+              onChange={handleChange}
+            />
+          </InputGroup>
+          <InputGroup className="mb-3 input-login">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="basic-addon1">
+                <Person />
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl
               placeholder="Email"
               aria-label="Email"
               aria-describedby="basic-addon1"
+              name="email"
               onChange={handleChange}
-              value={currentUser.email}
             />
           </InputGroup>
           <InputGroup className="mb-3">
@@ -40,14 +65,11 @@ function Login({ handleChange, handleSubmit, currentUser, register }) {
               </InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl
-              required
-              name="password"
               placeholder="Password"
               aria-label="Password"
               aria-describedby="basic-addon1"
+              name="password"
               onChange={handleChange}
-              value={currentUser.password}
-              type="password"
             />
           </InputGroup>
 
@@ -58,17 +80,7 @@ function Login({ handleChange, handleSubmit, currentUser, register }) {
             size="lg"
             block
           >
-            Iniciar sesión
-          </Button>
-
-          <Button
-            onClick={register}
-            className="btn-login"
-            variant="dark"
-            size="lg"
-            block
-          >
-            Registrate
+            Registrarse
           </Button>
         </form>
       </div>
@@ -76,4 +88,4 @@ function Login({ handleChange, handleSubmit, currentUser, register }) {
   );
 }
 
-export default Login;
+export default Register;

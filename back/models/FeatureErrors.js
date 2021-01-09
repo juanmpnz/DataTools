@@ -6,7 +6,7 @@ FeaturesErrors.init(
   {
     tool: {
       type: S.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     type: {
       type: S.STRING,
