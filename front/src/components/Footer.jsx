@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <div className="footer">
-      <footer>misClientes - ©2021 jpWebs</footer>
+      <footer>DataTools - ©2021 </footer>
     </div>
   );
 }

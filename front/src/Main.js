@@ -1,6 +1,6 @@
 import React, {useEffect} from "react"
 import { Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector} from "react-redux";
 import axios from "axios"
 
 //COMPONENTS
@@ -14,9 +14,12 @@ import UpdateContainer from "./containers/UpdateContainer"
 import NotFound from "./utils/404";
 
 import {setUser} from "./redux/action-creators/users"
+import ShowContainer from "./containers/ShowContainer";
 
 function Main({  history,location }) {
+  
    const dispatch = useDispatch()
+   const currentUser = useSelector((state) => state.currentUser);
    const path = location.pathname;
 
   useEffect(()=>{
@@ -26,25 +29,25 @@ function Main({  history,location }) {
      withCredentials: true,
      headers: { "Content-Type": "application/json" },
    })
-   .then((res) =>{ dispatch(setUser(res.data));    console.log(res);})
-   .catch((res) => {
-    
-      if(path !== "/register"){
-         history.push("/login") 
-      }
- 
+   .then((res) =>{ dispatch(setUser(res.data)); console.log(res);})
+   .catch((err) => {
+   return err
    } );}, [])
-  
+   
+
   return (
      <>
+  
         {path === "/login" || path ===  "/register"  ? null : <NavContainer />}  
         <div className="container">      
-        {path === "/login"  || path === "/register" ? null :<AddContainer />}   
+        {path === "/login"  || path === "/register" || currentUser.id === undefined ? <br/> : <AddContainer />}  
+
         <Switch>
         <Route exact path="/" component={DataTables}></Route>
         <Route path="/login" component={LoginContainer}></Route> 
         <Route path="/register" component={RegisterContainer}></Route> 
         <Route path="/update" component={UpdateContainer}></Route>
+        <Route path="/show/:id" component={ShowContainer}></Route>
         <Route path="/*" component={NotFound} />
         </Switch>
         </div>  

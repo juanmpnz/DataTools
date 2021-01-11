@@ -2,23 +2,26 @@ const express = require("express");
 const bp = require('body-parser')
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
+const path = require("path")
 const db = require("./db");
 const routes = require("./routes");
-const app = express();
 const User = require("./models/User")
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const app = express();
+
 
 // Passport
 app.use(cookieParser());
 app.use(session({ secret: "bootcamp" }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(bp.json())
-app.use(bp.urlencoded({ extended: true }))
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api", routes)
+app.use("/images", express.static(path.join(__dirname, "images")))
 
 // Local Strategy
 passport.use(

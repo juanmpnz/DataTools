@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 function NotFound() {
+  const history = useHistory();
   return (
     <div className="error">
       <img
@@ -11,7 +13,7 @@ function NotFound() {
       <br />
       <h3>PAGINA NO ENCONTRADA</h3>
       <br />
-      <Button>INICIO</Button>
+      <Button onClick={() => history.push("/")}>INICIO</Button>
     </div>
   );
 }

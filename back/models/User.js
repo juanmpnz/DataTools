@@ -21,7 +21,8 @@ User.init(
     email: {
       type: S.STRING,
 
-    },
+    }, 
+
     password: {
       type: S.STRING,
       allowNull: false,

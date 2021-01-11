@@ -4,5 +4,22 @@
 
 .tables {
   min-height: 80vh;
-  margin-bottom: 10vh;
+  margin-bottom: 1vh;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20vh;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    font-size: 0.7rem;
+    margin: 0% 0% 0% 10%;
+  }
 }

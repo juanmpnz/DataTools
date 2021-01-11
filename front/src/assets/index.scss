@@ -5,6 +5,7 @@
 @import "./footer";
 @import "./login";
 @import "./menu";
+@import "./show";
 
 * {
   box-sizing: border-box;
@@ -22,6 +23,21 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -10%;
-  background-color: $gray;
+  padding: 8vh;
+}
+
+.alert-text {
+  width: 100%;
+  display: flex;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert {
+  margin: 5%;
+}
+
+.add.tool {
+  width: 100%;
 }
