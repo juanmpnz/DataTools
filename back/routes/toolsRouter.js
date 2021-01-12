@@ -3,11 +3,13 @@ const router = express.Router();
 
 const {
     getTools,
-    addTool
+    addTool,
+    getToolsById
     
 } = require('./controllers/toolsController') 
 
-router.post("/add-tool", addTool)
+router.post("/:id", addTool)
+router.get("/:id",getToolsById);
 router.get("/",getTools);
 
 

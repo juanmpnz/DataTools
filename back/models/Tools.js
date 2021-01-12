@@ -6,7 +6,14 @@ Tools.init({
     toolName:{
         type: S.STRING,
         allowNull: false,
-    }
-}, { sequelize: db, modelName: "tools" })
+    },userId:{
+        type: S.STRING,
+        allowNull : false,
+    },status:{
+        type: S.STRING,
+        allowNull:false,
+        defaultValue: "Pending" ,
+    },
+}, { sequelize: db, modelName: "Tools" })
 
 module.exports = Tools

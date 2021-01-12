@@ -22,7 +22,11 @@ User.init(
       type: S.STRING,
 
     }, 
-
+ /*    voteIn: {
+      type: S.NUMBER,
+      allowNull: false,
+      defaultValue: null ,
+    }, */
     password: {
       type: S.STRING,
       allowNull: false,
@@ -33,7 +37,7 @@ User.init(
   },
   {
     sequelize: db,
-    modelName: "user",
+    modelName: "User",
   }
 );
 

@@ -1,8 +1,5 @@
 const express = require("express");
 const passport = require('passport')
-const { body, validationResult } = require('express-validator');
-
-
 const router = express.Router();
 
 const { userRegister ,getUsers, login , me, logout } = require('./controllers/userController') 

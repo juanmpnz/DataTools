@@ -6,7 +6,7 @@ function Menu({ handleLogout, currentUser, validation }) {
   const history = useHistory();
   return (
     <>
-      <Navbar expand="lg">
+      <Navbar expand="lg" variant="light">
         <Navbar.Brand>
           <Link to={"/"}>
             <div className="logo-completo">
@@ -29,13 +29,26 @@ function Menu({ handleLogout, currentUser, validation }) {
 
           <Form inline>
             {currentUser.id ? (
-              <Button variant="dark" onClick={handleLogout}>
-                Logout
-              </Button>
+              <div>
+                <Button variant="dark" onClick={() => history.push("/mytools")}>
+                  Mis Herramientas
+                </Button>{" "}
+                <Button variant="dark" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </div>
             ) : (
-              <Button variant="dark" onClick={() => history.push("/login")}>
-                Login
-              </Button>
+              <div>
+                <Button variant="dark" onClick={() => history.push("/login")}>
+                  Login
+                </Button>{" "}
+                <Button
+                  variant="dark"
+                  onClick={() => history.push("/register")}
+                >
+                  Register
+                </Button>{" "}
+              </div>
             )}
           </Form>
         </Navbar.Collapse>
