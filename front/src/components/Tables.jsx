@@ -83,7 +83,7 @@ function TableComponent({
                   <td>{order.title}</td>
                   <td>{order.tool}</td>
                   <td>{order.votes}</td>
-                  <td>
+                  <td className="actions">
                     {" "}
                     <Button
                       className="btn"
@@ -95,6 +95,11 @@ function TableComponent({
                         ? "EJECUTAR PEDIDO"
                         : "PROXIMO A EJECUTAR"}
                     </Button>
+                    <Link to={`show/${order.id}`}>
+                      <Button className="btn" variant="primary" size="sm">
+                        VER
+                      </Button>
+                    </Link>
                   </td>
                 </tr>
               );

@@ -57,6 +57,9 @@ function LoginContainer() {
         }
       });
     }
+    setTimeout(function () {
+      setValidation("");
+    }, 1500);
   };
 
   const register = () => {

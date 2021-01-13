@@ -31,7 +31,7 @@ function Show({ showOrder }) {
       </div>
 
       <hr />
-      <Button onClick={() => history.push("/")}>VOLVER</Button>
+      <Button onClick={() => history.goBack()}>VOLVER</Button>
     </div>
   );
 }

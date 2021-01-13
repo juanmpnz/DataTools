@@ -57,6 +57,9 @@ function RegisterContainer() {
         history.push("/login");
       }, 2000);
     }
+    setTimeout(function () {
+      setValidation("");
+    }, 1500);
   };
   return (
     <Register
