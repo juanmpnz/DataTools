@@ -24,9 +24,21 @@ function AddContainer() {
   });
 
   const error = {
-    msg: "Debes seleccionar una herramienta",
+    msg: "Debes guardar una herramienta",
     key: Math.random(),
     type: "danger",
+  };
+
+  const errorType = {
+    msg: "Debes seleccionar un tipo",
+    key: Math.random(),
+    type: "danger",
+  };
+
+  const createOk = {
+    msg: "Creado con exito",
+    key: Math.random(),
+    type: "success",
   };
 
   const addTool = {
@@ -37,6 +49,7 @@ function AddContainer() {
 
   const handleChange = (e) => {
     e.preventDefault();
+    console.log(toolToAdd, e.target.value);
     const { value } = e.target;
     if (e.target.name === "tool") {
       setToolToAdd(value);
@@ -47,36 +60,53 @@ function AddContainer() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (order.type === "" || order.type === "Seleccionar") {
-      setValidation(error);
+    if (
+      order.type === "" ||
+      order.type === "Seleccionar" ||
+      order.type === undefined
+    ) {
+      setValidation(errorType);
       setTimeout(function () {
         setValidation("");
       }, 1500);
     } else {
       dispatch(addOrder(order)).then((ord) => {
         if (ord === "err") {
-          setValidation(error);
+          setValidation(errorType);
         } else {
-          setLgShow(false);
-          history.push(`/update`);
+          setValidation(createOk);
+          setTimeout(function () {
+            setValidation("");
+            setLgShow(false);
+            history.push(`/update`);
+          }, 1500);
         }
       });
     }
+    setOrder("");
   };
 
   const onSubmitTool = (e) => {
     e.preventDefault();
-    axios
-      .post(`/api/tools/${currentUser.id}`, { toolName: toolToAdd })
-      .then((tool) => {
-        setValidation(addTool);
-        setTimeout(function () {
-          setValidation("");
-          setLgShow(false);
-          setRender(true);
-        }, 1500);
-      })
-      .catch((e) => e);
+    if (toolToAdd === "") {
+      setValidation(error);
+      setTimeout(function () {
+        setValidation("");
+      }, 1500);
+    } else {
+      axios
+        .post(`/api/tools/${currentUser.id}`, { toolName: toolToAdd })
+        .then((tool) => {
+          setValidation(addTool);
+          setTimeout(function () {
+            setValidation("");
+            setLgShow(false);
+            setRender(true);
+          }, 1500);
+        })
+        .catch((e) => e);
+    }
+    setToolToAdd("");
   };
 
   switch (route) {

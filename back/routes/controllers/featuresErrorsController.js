@@ -11,7 +11,8 @@ const uploadImg = (req,res,next)=>{
   FeatureErrors.findByPk(id)
   .then((order)=>{
     order.update({img})
-  })
+    res.status(200).send("Imagen Agregada")
+  }).catch((e)=> res.status(500).send(e))
 }
 
   const getByToolId = (req,res,next)=> {

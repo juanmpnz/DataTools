@@ -42,12 +42,16 @@ function ImgUpload() {
       fileData.append("image", file, file.name);
       axios
         .put(`/api/orders/${currentOrder.id}`, fileData)
-        .then(() => {
+        .then((r) => {
+          console.log(r);
           setValidation(imagenOk);
         })
         .catch((err) => {
+          console.log(err);
           setValidation(errorServidor);
         });
+
+      setValidation(imagenOk);
     }
 
     setTimeout(function () {
@@ -64,6 +68,8 @@ function ImgUpload() {
           name="img"
           onChange={onChange}
         />
+        <br />
+        *El tamaño de la imagen no debe ser mayor a 50kb.
         <br />
         <Button block variant="outline-dark" onClick={onSubmit}>
           AGREGAR IMAGEN
