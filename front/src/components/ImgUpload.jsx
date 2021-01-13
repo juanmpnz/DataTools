@@ -6,7 +6,6 @@ import Alert from "../utils/Alert";
 
 function ImgUpload() {
   const currentOrder = useSelector((state) => state.orders);
-
   const [file, setFile] = useState();
   const [fileName, setFileName] = useState("Seleccionar archivo");
   const [validation, setValidation] = useState("");
@@ -17,31 +16,45 @@ function ImgUpload() {
     type: "danger",
   };
 
+  const errorServidor = {
+    msg: "Ocurrio un error de servidor",
+    key: Math.random(),
+    type: "danger",
+  };
+
+  const imagenOk = {
+    msg: "Imgagen agregada",
+    key: Math.random(),
+    type: "success",
+  };
+
   const onChange = (e) => {
+    e.preventDefault();
     setFile(e.target.files[0]);
     setFileName(e.target.files[0].name);
   };
 
   const onSubmit = (e) => {
+    e.preventDefault();
     if (fileName === "Seleccionar archivo") setValidation(error);
     else {
       const fileData = new FormData();
-      const id = currentOrder.id;
       fileData.append("image", file, file.name);
-      console.log(fileData.getAll("image"));
       axios
-        .post(`/api/orders/${id}/img`, fileData)
-        .then((res) => {
-          console.log(res.data);
+        .put(`/api/orders/${currentOrder.id}`, fileData)
+        .then(() => {
+          setValidation(imagenOk);
         })
-        .catch((err) => setValidation(error));
+        .catch((err) => {
+          setValidation(errorServidor);
+        });
     }
+
     setTimeout(function () {
       setValidation("");
     }, 2000);
   };
 
-  console.log("file", file, "name", fileName);
   return (
     <form>
       <Form.Group>

@@ -8,6 +8,10 @@ Votes.init(
       type: S.STRING,
       allowNull: false,
 
+    },FeaturesErrorId: {
+      type: S.STRING,
+      allowNull: false,
+
     },  
   },
   { sequelize: db, modelName: "Votes" }

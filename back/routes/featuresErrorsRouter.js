@@ -7,17 +7,19 @@ const {
     addOrder,
     uploadImg,
     updateOrder,
+    updateOrderStatus,
     findOrder,
+    getByToolId
     
 } = require('./controllers/featuresErrorsController') 
 
 router.post("/add", addOrder)
 router.put("/update", updateOrder)
-router.post("/:id/img",multer, uploadImg)
+router.put("/status/:id", updateOrderStatus)
+router.put("/:id", multer, uploadImg)
+router.get("/:id/order", getByToolId)
 router.get("/find/:id", findOrder)
 router.get("/",getAll);
-
-
 
 module.exports = router;
 

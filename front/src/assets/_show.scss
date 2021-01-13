@@ -5,6 +5,13 @@
   margin-bottom: 1vh;
   padding: 2vh;
 
+  .contenedorImg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   h3 {
     width: 100%;
     font-size: 1.25rem;
@@ -21,7 +28,7 @@
     text-transform: uppercase;
   }
   img {
-    background-color: red;
-    width: 100%;
+    width: 30%;
+    border: 10px solid $blue;
   }
 }

@@ -11,12 +11,13 @@ import Alert from "../utils/Alert";
 function AddContainer() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
+  const currentOrder = useSelector((state) => state.orders);
   const history = useHistory();
   const location = useLocation();
   const route = location.pathname;
   const [lgShow, setLgShow] = useState(false);
+  const [render, setRender] = useState(false);
   const [validation, setValidation] = useState("");
-  const currentOrder = useSelector((state) => state.orders);
   const [toolToAdd, setToolToAdd] = useState("");
   const [order, setOrder] = useState({
     type: "",
@@ -28,22 +29,10 @@ function AddContainer() {
     type: "danger",
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (order.type === "" || order.type === "Seleccionar") {
-      setValidation(error);
-      setTimeout(function () {
-        setValidation("");
-      }, 1500);
-    } else {
-      dispatch(addOrder(order)).then((ord) => {
-        if (ord === "err") setValidation(error);
-        else {
-          setLgShow(false);
-          history.push(`/update`);
-        }
-      });
-    }
+  const addTool = {
+    msg: "Herramienta agregada",
+    key: Math.random(),
+    type: "success",
   };
 
   const handleChange = (e) => {
@@ -56,14 +45,36 @@ function AddContainer() {
     }
   };
 
-  console.log(toolToAdd);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (order.type === "" || order.type === "Seleccionar") {
+      setValidation(error);
+      setTimeout(function () {
+        setValidation("");
+      }, 1500);
+    } else {
+      dispatch(addOrder(order)).then((ord) => {
+        if (ord === "err") {
+          setValidation(error);
+        } else {
+          setLgShow(false);
+          history.push(`/update`);
+        }
+      });
+    }
+  };
 
   const onSubmitTool = (e) => {
     e.preventDefault();
     axios
       .post(`/api/tools/${currentUser.id}`, { toolName: toolToAdd })
       .then((tool) => {
-        console.log("agregada la herramienta", tool);
+        setValidation(addTool);
+        setTimeout(function () {
+          setValidation("");
+          setLgShow(false);
+          setRender(true);
+        }, 1500);
       })
       .catch((e) => e);
   };

@@ -17,11 +17,10 @@ function DataTablesContainer() {
   const [currentPage, setCurrentPage] = useState(1);
   const [orderPerPage] = useState(10);
   const [render, setRender] = useState(false);
-  const [userVotes, setUserVotes] = useState("");
+  const [userVotes, setUserVotes] = useState([]);
   const [validation, setValidation] = useState("");
   const [status, setStatus] = useState("Started");
-  const [userTools, setUserTools] = useState("");
-  console.log(location.pathname);
+  const [myTools, setMyTools] = useState([]);
 
   const votoError = {
     msg: "Ya votaste a este pedido",
@@ -29,13 +28,25 @@ function DataTablesContainer() {
     type: "danger",
   };
 
+  const votoOk = {
+    msg: "Voto agregado",
+    key: Math.random(),
+    type: "success",
+  };
+
+  const statusOk = {
+    msg: "Estado actualizado",
+    key: Math.random(),
+    type: "success",
+  };
+
   useEffect(() => {
     axios.get(`api/votes/user/${currentUser.id}`).then((votes) => {
       setUserVotes(votes.data);
     });
 
-    axios.get(`/api/tools/${currentUser.id}`).then((tools) => {
-      setUserTools(tools);
+    axios.get(`api/orders/${currentUser.id}/order`).then((votes) => {
+      setMyTools(votes.data);
     });
 
     axios
@@ -57,10 +68,13 @@ function DataTablesContainer() {
       })
       .then((rta) => {
         current = v + 1;
-        console.log(current);
+
         orderUpdate({ id: orderId, votes: current });
         setRender(true);
-        console.log(rta);
+        setValidation(votoOk);
+        return setTimeout(function () {
+          setValidation("");
+        }, 2000);
       })
       .catch((err) => {
         if (err) {
@@ -89,7 +103,19 @@ function DataTablesContainer() {
     }
   };
 
-  console.log("user tools", userTools);
+  const handleStatus = (id) => {
+    const status = "Proxiomo a ejecutar";
+    axios
+      .put(`/api/orders/status/${id}`, { status })
+      .then((rta) => {
+        setValidation(statusOk);
+        setRender(true);
+        return setTimeout(function () {
+          setValidation("");
+        }, 2000);
+      })
+      .catch((e) => e);
+  };
 
   return (
     <>
@@ -111,11 +137,12 @@ function DataTablesContainer() {
       ) : null}
       {location.pathname === "/mytools" ? (
         <TableComponent
-          tools={userTools}
           orders={false}
           handleVotes={handleVotes}
           user={currentUser}
           status={status}
+          myTools={myTools}
+          handleStatus={handleStatus}
         />
       ) : null}{" "}
       {orders.length < 10 ? null : (

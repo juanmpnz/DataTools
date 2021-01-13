@@ -4,23 +4,32 @@ import { useHistory } from "react-router-dom";
 
 function Show({ showOrder }) {
   const history = useHistory();
-  console.log(showOrder);
+
   return (
     <div className="showContainer">
       <h3>HERRAMIENTA: {showOrder.tool}</h3>
       <h3>TIPO : {showOrder.type}</h3>
       <h3>CANTIDAD DE VOTOS : {showOrder.votes}</h3>
       <hr />
+      <p>TITULO:</p>
+      <p>{showOrder.title}</p>
+      <hr />
+
       <p>DESCRIPCION:</p>
       <p>{showOrder.description}</p>
       <hr />
       <p>IMAGEN:</p>
-      {/*    <img src={showOrder.img} alt="" className={"img-show"} /> */}
-      <img
-        src={
-          showOrder.img ? showOrder.img : "https://i.stack.imgur.com/y9DpT.jpg"
-        }
-      ></img>
+
+      <div className="contenedorImg">
+        <img
+          src={
+            showOrder.img
+              ? showOrder.img
+              : "https://i.stack.imgur.com/y9DpT.jpg"
+          }
+        ></img>
+      </div>
+
       <hr />
       <Button onClick={() => history.push("/")}>VOLVER</Button>
     </div>

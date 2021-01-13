@@ -6,14 +6,14 @@ const User = require("./User")
 
 FeatureErrors.belongsToMany(User , { through: "Votes" })
 User.belongsToMany(FeatureErrors, { through: "Votes" });
-/* 
-User.belongsToMany(Tools, {through: "ToolsCreators"}) //pertenece a muchas
-Tools.belongsTo(User, {through: "ToolsCreators"}) //pertenece a muchas */
+
+Tools.hasMany(FeatureErrors);
+FeatureErrors.belongsTo(Tools);
 
 
 module.exports={
     db,
     FeatureErrors,
     Tools,
-    User,
+    User,    
 }

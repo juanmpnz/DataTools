@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-
 import Update from "../components/Update";
 import { orderUpdate } from "../redux/action-creators/orders";
 
@@ -15,8 +14,9 @@ function UptadteContainer() {
   const [updateOrder, setUpdateOrder] = useState({
     id: currentOrder.id,
     tool: "",
-    img: "",
+    ToolId: "",
     description: "",
+    title: "",
   });
 
   const errorTool = {
@@ -80,11 +80,14 @@ function UptadteContainer() {
       const fil = e.target.files[0].name;
       setUpdateOrder({ ...updateOrder, [e.target.name]: fil });
       setFile(e.target.files[0]);
+    } else if (e.target.name === "tool") {
+      const obj = JSON.parse(e.target.value);
+      setUpdateOrder({ ...updateOrder, ...obj });
     } else {
       setUpdateOrder({ ...updateOrder, [e.target.name]: value });
     }
   };
-  console.log("asdfasdf", updateOrder.tool);
+
   return (
     <Update
       currentOrder={currentOrder}

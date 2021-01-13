@@ -18,10 +18,10 @@ const {
 
   const getToolsById = (req,res,next) =>{
     const {id} = req.params
-
+console.log(id)
     Tools.findAll({where: {userId:id}})
     .then((tools)=> { 
-      res.send(tools.data)})
+      res.send(tools)})
     .catch((err)=>err)
 }
 

@@ -6,6 +6,14 @@ import Alert from "../utils/Alert";
 function Register({ handleChange, handleSubmit, validation }) {
   return (
     <>
+      {validation ? (
+        <Alert
+          className="alert"
+          key={validation.key}
+          message={validation.msg}
+          type={validation.type}
+        />
+      ) : null}
       <div className="container-fluid login">
         <div className="form">
           <div className="logo-completo">
@@ -93,14 +101,6 @@ function Register({ handleChange, handleSubmit, validation }) {
           </form>
         </div>
       </div>
-      {validation ? (
-        <Alert
-          className="alert"
-          key={validation.key}
-          message={validation.msg}
-          type={validation.type}
-        />
-      ) : null}
     </>
   );
 }

@@ -30,23 +30,26 @@ function Menu({ handleLogout, currentUser, validation }) {
           <Form inline>
             {currentUser.id ? (
               <div>
+                <Button variant="dark" onClick={() => history.push("/")}>
+                  Inicio
+                </Button>{" "}
                 <Button variant="dark" onClick={() => history.push("/mytools")}>
                   Mis Herramientas
                 </Button>{" "}
                 <Button variant="dark" onClick={handleLogout}>
-                  Logout
+                  Cerrar sesión
                 </Button>
               </div>
             ) : (
               <div>
                 <Button variant="dark" onClick={() => history.push("/login")}>
-                  Login
+                  Iniciar sesión
                 </Button>{" "}
                 <Button
                   variant="dark"
                   onClick={() => history.push("/register")}
                 >
-                  Register
+                  Registrarse
                 </Button>{" "}
               </div>
             )}

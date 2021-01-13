@@ -62,6 +62,9 @@ function LoginContainer() {
   const register = () => {
     history.push("/register");
   };
+  const backToHome = () => {
+    history.push("/");
+  };
 
   return (
     <Login
@@ -70,6 +73,7 @@ function LoginContainer() {
       currentUser={currentUser}
       register={register}
       validation={validation}
+      backToHome={backToHome}
     />
   );
 }

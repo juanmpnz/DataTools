@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Nav from "../components/Nav";
-import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { logout } from "../redux/action-creators/users";
 
 function NavContainer() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const currentUser = useSelector((state) => state.currentUser);
   const [validation, setValidation] = useState("");
 
@@ -29,6 +29,7 @@ function NavContainer() {
         setValidation(logoutOk);
         setTimeout(function () {
           setValidation("");
+          history.push("/");
         }, 2000);
       }
     });

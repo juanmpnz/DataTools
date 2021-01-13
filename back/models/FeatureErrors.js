@@ -8,15 +8,20 @@ FeaturesErrors.init(
       type: S.STRING,
       allowNull: true,
     },
+    title: {
+      type: S.STRING,
+      defaultValue: null ,
+      allowNull: true,
+    },
     type: {
       type: S.STRING,
-      allowNull: false,
+      allowNull: true,
       defaultValue: null ,
     },
     img: {
       type: S.STRING,
       allowNull: true,  
-      defaultValue: null ,
+   
     },
     description: {
       type: S.STRING,
@@ -29,7 +34,13 @@ FeaturesErrors.init(
         allowNull: true,
         defaultValue: 0 ,
       },
- 
+    status:{
+        type: S.STRING,
+        allowNull:true,
+        defaultValue: "Activo" ,
+      
+    },
+   
   },
   { sequelize: db, modelName: "FeaturesErrors" }
 );

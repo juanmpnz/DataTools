@@ -1,22 +1,23 @@
 import React from "react";
 import { Button, Accordion, Card } from "react-bootstrap";
 
-function Acordion() {
+function Acordion({ tools, rerender }) {
   return (
     <div>
       <Accordion defaultActiveKey="0" className="accordeon">
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="1">
-              Ver trabajos realizados
+              Mis herramientas
             </Accordion.Toggle>
           </Card.Header>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>Hello! I'm another body</Card.Body>
-          </Accordion.Collapse>
-          <Accordion.Collapse eventKey="1">
-            <Card.Body>Hello! I'm aasdasdnother body</Card.Body>
-          </Accordion.Collapse>
+          {tools.map((tool) => {
+            return (
+              <Accordion.Collapse eventKey="1">
+                <Card.Body>{tool.toolName}</Card.Body>
+              </Accordion.Collapse>
+            );
+          })}
         </Card>
       </Accordion>
     </div>

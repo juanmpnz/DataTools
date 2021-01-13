@@ -22,11 +22,7 @@ User.init(
       type: S.STRING,
 
     }, 
- /*    voteIn: {
-      type: S.NUMBER,
-      allowNull: false,
-      defaultValue: null ,
-    }, */
+
     password: {
       type: S.STRING,
       allowNull: false,

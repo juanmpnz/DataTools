@@ -2,7 +2,11 @@ import React from "react";
 import MyTools from "../components/MyTools";
 
 function MyToolsContainer() {
-  return <MyTools />;
+  return (
+    <div>
+      <MyTools />
+    </div>
+  );
 }
 
 export default MyToolsContainer;

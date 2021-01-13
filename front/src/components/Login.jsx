@@ -1,3 +1,4 @@
+import React from "react";
 import { Button, InputGroup, FormControl, Form } from "react-bootstrap";
 import { Person, Key } from "react-bootstrap-icons";
 import Alert from "../utils/Alert";
@@ -8,9 +9,18 @@ function Login({
   currentUser,
   register,
   validation,
+  backToHome,
 }) {
   return (
     <>
+      {validation ? (
+        <Alert
+          className="alert"
+          key={validation.key}
+          message={validation.msg}
+          type={validation.type}
+        />
+      ) : null}
       <div className="container-fluid login">
         <div className="form">
           <div className="logo-completo">
@@ -79,19 +89,20 @@ function Login({
               size="lg"
               block
             >
-              Registrate
+              Registrarse
+            </Button>
+            <Button
+              onClick={backToHome}
+              className="btn-login"
+              variant="dark"
+              size="lg"
+              block
+            >
+              Inicio
             </Button>
           </form>
         </div>
       </div>
-      {validation ? (
-        <Alert
-          className="alert"
-          key={validation.key}
-          message={validation.msg}
-          type={validation.type}
-        />
-      ) : null}
     </>
   );
 }
