@@ -1,2 +1,2 @@
-# Challenge fullStack para Mercado Libre.
+# Challenge fullStack
 
